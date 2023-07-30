@@ -36,9 +36,16 @@ public class Carro extends Actor
             if(getY() < 640)
                 setLocation(getX(), getY() + speed);
         }
-        
+        checkColision();
     }
-    
+    public void checkColision(){
+        Actor collied = getOneIntersectingObject(Muro.class);
+        if (collied != null){
+            getWorld().removeObject(collied);
+            getWorld().removeObject(this);
+            Greenfoot.stop();
+        }
+    }
     public void aumenta_velocidad(){
         speed++;
     }
