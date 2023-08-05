@@ -17,7 +17,7 @@ public class MyWorld extends World
     private ArrayList<Muro> muros;
     private Contador score;
     private Contador level;
-    
+    public static final int WIDTH = 50;
     private int velocidad_coche;
     private int num_adelantamientos;
     private int num_adelantamientos_nivel;
@@ -28,7 +28,7 @@ public class MyWorld extends World
         super(810,700,1);
         num_adelantamientos = 0;
         num_adelantamientos_nivel = 4;
-        velocidad_coche = 2;
+        velocidad_coche = 5;
         
         score = new Contador("Score: " );
         level = new Contador("Level: " );
@@ -63,46 +63,46 @@ public class MyWorld extends World
         num_rivales--;
     }
     public void aumentar_dificultad(){
-        if(num_adelantamientos == num_adelantamientos_nivel){
-            num_adelantamientos = 0;
-            num_adelantamientos_nivel = num_adelantamientos_nivel + 2;
-            velocidad_coche++;
-            level.add(1);
-            carro.aumenta_velocidad();
-        }
+    System.out.println(num_adelantamientos);
+    if(num_adelantamientos >= num_adelantamientos_nivel){
+        num_adelantamientos = 0;
+        num_adelantamientos_nivel = num_adelantamientos_nivel + 2;
+        velocidad_coche++;
+        level.add(1);
+        carro.aumenta_velocidad();
     }
+}
+
     public void aniadir_rivales(){
+    if(num_rivales == 0){
+        int[] carriles = {230, 395, 575};
+        int carrilIndex = Greenfoot.getRandomNumber(carriles.length);
         
-        if(num_rivales == 0){
+        int offsetX = 40; 
+        
+        for (int i = 0; i < 4; i++) {
+            int posX = carriles[carrilIndex] - offsetX; 
             
-            int carril = getRandomNumber(0,3);
-            
-            if(carril == 0){
-                addObject(new Muro(velocidad_coche),180, 80);
+            if(carrilIndex == 0){
+                addObject(new Muro(velocidad_coche), posX + i * MyWorld.WIDTH, 80);
             }
-            else if( carril == 1){
-                addObject(new Muro(velocidad_coche),getWidth()/2, 80);
-            }
-            else{
-                addObject(new Muro(velocidad_coche),getWidth(), 80);
-            }
-            
-            //System.out.println("" + carril );
-            carril++;
-            carril = carril % 3;
-            
-            if(carril == 0){
-                addObject(new Muro(velocidad_coche),180, 80);
-            }
-            else if( carril == 1){
-                addObject(new Muro(velocidad_coche),290, 80);
+            else if( carrilIndex == 1){
+                addObject(new Muro(velocidad_coche), posX + i * MyWorld.WIDTH, 80);
             }
             else{
-                addObject(new Muro(velocidad_coche),410, 80);
+                addObject(new Muro(velocidad_coche), posX + i * MyWorld.WIDTH, 80);
             }
             
-            
-            num_rivales = 2;
+            carrilIndex++;
+            carrilIndex = carrilIndex % carriles.length;
         }
+        
+        num_rivales = 4;
     }
+}
+
+
+
+
+
 }

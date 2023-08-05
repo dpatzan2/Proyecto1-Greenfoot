@@ -36,6 +36,7 @@ public class Carro extends Actor
             if(getY() < 640)
                 setLocation(getX(), getY() + speed);
         }
+        
         checkColision();
     }
     public void checkColision(){
