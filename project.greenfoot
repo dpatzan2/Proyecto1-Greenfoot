@@ -48,11 +48,19 @@ dependency8.type=UsesDependency
 dependency9.from=Muro
 dependency9.to=MyWorld
 dependency9.type=UsesDependency
+<<<<<<< HEAD
 editor.fx.0.height=739
 editor.fx.0.width=816
 editor.fx.0.x=552
 editor.fx.0.y=114
 height=1096
+=======
+editor.fx.0.height=737
+editor.fx.0.width=814
+editor.fx.0.x=344
+editor.fx.0.y=96
+height=881
+>>>>>>> c3348e96c2db9f836058b7f2fbefa0a69af777c8
 package.numDependencies=14
 package.numTargets=10
 project.charset=UTF-8
@@ -140,7 +148,13 @@ target9.width=120
 target9.x=0
 target9.y=0
 version=3.0.0
+<<<<<<< HEAD
 width=1936
 world.lastInstantiated=MyWorld
 xPosition=0
+=======
+width=1092
+world.lastInstantiated=PantallaInicio
+xPosition=287
+>>>>>>> c3348e96c2db9f836058b7f2fbefa0a69af777c8
 yPosition=0
