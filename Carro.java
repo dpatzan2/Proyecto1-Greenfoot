@@ -44,7 +44,7 @@ public class Carro extends Actor
         if (collied != null){
             getWorld().removeObject(collied);
             getWorld().removeObject(this);
-            Greenfoot.stop();
+            Greenfoot.setWorld(new GameOver());
         }
     }
     public void aumenta_velocidad(){
