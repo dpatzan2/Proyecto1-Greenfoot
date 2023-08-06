@@ -63,7 +63,6 @@ public class MyWorld extends World
         num_rivales--;
     }
     public void aumentar_dificultad(){
-    System.out.println(num_adelantamientos);
     if(num_adelantamientos >= num_adelantamientos_nivel){
         num_adelantamientos = 0;
         num_adelantamientos_nivel = num_adelantamientos_nivel + 2;
