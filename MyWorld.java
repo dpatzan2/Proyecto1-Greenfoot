@@ -22,7 +22,9 @@ public class MyWorld extends World
     private int num_adelantamientos;
     private int num_adelantamientos_nivel;
     private Carro carro;
-    private int num_rivales;    
+    private int num_rivales;
+    private static MyWorld instance;
+    private GreenfootSound gameSound = new GreenfootSound("soundtrack.mp3");
     public MyWorld()
     {    
         super(810,700,1);
@@ -37,14 +39,24 @@ public class MyWorld extends World
         addObject(carro, 300, 600);
         addObject(level, 80, 90);
         addObject(score, 80, 60);
-        Greenfoot.playSound("juego.wav");
     }
     public void act(){
         aumentar_dificultad();
         aniadir_rivales();
         
     }
-    
+    public static MyWorld getInstance() {
+        if (instance == null) {
+            instance = new MyWorld();
+        }
+        return instance;
+    }
+    public static void playGameSound() {
+        getInstance().gameSound.playLoop();    
+    }
+    public static void stopGameSound() {
+        getInstance().gameSound.stop();
+    }
     
     public int getRandomNumber(int start,int end){
        int normal = Greenfoot.getRandomNumber(end-start+1);

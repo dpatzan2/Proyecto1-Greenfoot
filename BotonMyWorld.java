@@ -7,10 +7,15 @@ public class BotonMyWorld extends Actor {
         botonImage.scale(100, 50); // Ajusta el tamaño del botón aquí
         setImage(botonImage);
     }
-    public void act() {
-        //Funcionalidad para poder cambiar de mundo al presionar el boton
-        if (Greenfoot.mouseClicked(this)) {
-            Greenfoot.setWorld(new MyWorld());
+public void act() {
+    if (Greenfoot.mouseClicked(this)) {
+        World world = getWorld();
+        if (world instanceof PantallaInicio) {
+            PantallaInicio pantallaInicio = (PantallaInicio) world;
+            pantallaInicio.stopStartSound();
+            Greenfoot.setWorld(new MyWorld()); 
+            MyWorld.playGameSound();
         }
     }
+}
 }
