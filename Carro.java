@@ -9,6 +9,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Carro extends Actor
 {
     private int speed;
+    private GreenfootSound collisionSound = new GreenfootSound("explosion.wav");
     
     public Carro(int v){
         speed = v;
@@ -44,6 +45,9 @@ public class Carro extends Actor
         if (collied != null){
             getWorld().removeObject(collied);
             getWorld().removeObject(this);
+            MyWorld.stopGameSound();
+            collisionSound.setVolume(50);
+            collisionSound.play();
             Greenfoot.setWorld(new GameOver());
         }
     }
