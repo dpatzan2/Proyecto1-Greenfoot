@@ -8,11 +8,14 @@ public class BotonMyWorld extends Actor {
         setImage(botonImage);
     }
 public void act() {
-        if (Greenfoot.mouseClicked(this)) {
-            PantallaInicio pantallaInicio = (PantallaInicio) getWorld();
+    if (Greenfoot.mouseClicked(this)) {
+        World world = getWorld();
+        if (world instanceof PantallaInicio) {
+            PantallaInicio pantallaInicio = (PantallaInicio) world;
             pantallaInicio.stopStartSound();
             Greenfoot.setWorld(new MyWorld()); 
-            MyWorld.playGameSound(); 
+            MyWorld.playGameSound();
         }
     }
+}
 }

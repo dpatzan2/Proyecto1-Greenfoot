@@ -1,10 +1,13 @@
 import greenfoot.*;
 
 public class GameOver extends World {
+    //private GreenfootSound endSound = new GreenfootSound("endSound.mp3");
     //Codigo con ayuda de una AI
     public GameOver() {
         //Se crea el mundo GameOver
         super(800, 600, 1);
+        //endSound.setVolume(20);
+        //endSound.play();
         prepare();
     }
 
