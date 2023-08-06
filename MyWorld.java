@@ -1,4 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.ArrayList;
 
 /**
  * Write a description of class MyWorld here.
@@ -13,8 +14,10 @@ public class MyWorld extends World
      * Constructor for objects of class MyWorld.
      * 
      */
-
-    
+    private ArrayList<Muro> muros;
+    private Contador score;
+    private Contador level;
+    public static final int WIDTH = 50;
     private int velocidad_coche;
     private int num_adelantamientos;
     private int num_adelantamientos_nivel;
@@ -25,13 +28,20 @@ public class MyWorld extends World
         super(810,700,1);
         num_adelantamientos = 0;
         num_adelantamientos_nivel = 4;
-        velocidad_coche = 2;
-
+        velocidad_coche = 5;
+        
+        score = new Contador("Score: " );
+        level = new Contador("Level: " );
+        level.add(1);
         carro = new Carro(velocidad_coche);
         addObject(carro, 300, 600);
+        addObject(level, 80, 90);
+        addObject(score, 80, 60);
+        Greenfoot.playSound("juego.wav");
     }
     public void act(){
         aumentar_dificultad();
+        aniadir_rivales();
         
     }
     
@@ -41,7 +51,9 @@ public class MyWorld extends World
        return normal+start;
     }
     
-    
+    public void aumentar_puntuacion(int valor){
+        score.add(valor);
+    }
     
     public void aumentar_num_adelantamientos(){
         num_adelantamientos++;
@@ -51,12 +63,46 @@ public class MyWorld extends World
         num_rivales--;
     }
     public void aumentar_dificultad(){
-        if(num_adelantamientos == num_adelantamientos_nivel){
-            num_adelantamientos = 0;
-            num_adelantamientos_nivel = num_adelantamientos_nivel + 2;
-            velocidad_coche++;
-               carro.aumenta_velocidad();
-        }
+    System.out.println(num_adelantamientos);
+    if(num_adelantamientos >= num_adelantamientos_nivel){
+        num_adelantamientos = 0;
+        num_adelantamientos_nivel = num_adelantamientos_nivel + 2;
+        velocidad_coche++;
+        level.add(1);
+        carro.aumenta_velocidad();
     }
-    
+}
+
+    public void aniadir_rivales(){
+    if(num_rivales == 0){
+        int[] carriles = {230, 395, 575};
+        int carrilIndex = Greenfoot.getRandomNumber(carriles.length);
+        
+        int offsetX = 40; 
+        
+        for (int i = 0; i < 4; i++) {
+            int posX = carriles[carrilIndex] - offsetX; 
+            
+            if(carrilIndex == 0){
+                addObject(new Muro(velocidad_coche), posX + i * MyWorld.WIDTH, 80);
+            }
+            else if( carrilIndex == 1){
+                addObject(new Muro(velocidad_coche), posX + i * MyWorld.WIDTH, 80);
+            }
+            else{
+                addObject(new Muro(velocidad_coche), posX + i * MyWorld.WIDTH, 80);
+            }
+            
+            carrilIndex++;
+            carrilIndex = carrilIndex % carriles.length;
+        }
+        
+        num_rivales = 4;
+    }
+}
+
+
+
+
+
 }

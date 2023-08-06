@@ -24,7 +24,7 @@ public class Muro extends Actor
         if( getY() >= getWorld().getHeight() - 1){
             MyWorld juego = (MyWorld) getWorld();
             juego.removeObject(this);
-            //juego.aumentar_puntuacion(10);
+            juego.aumentar_puntuacion(10);
             juego.disminuir_num_rivales();
             juego.aumentar_num_adelantamientos();
         }
